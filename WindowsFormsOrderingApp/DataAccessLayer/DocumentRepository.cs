@@ -9,39 +9,37 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer
 {
-    public class ProductRepository
+    public class DocumentRepository
     {
         string connectionString = "Data Source=193.198.57.183; Initial Catalog = DotNet;User ID = vjezbe; Password = vjezbe";
-        public List<Product> _products = new List<Product>();
-        public ProductRepository()
+        public List<Document> _documents = new List<Document>();
+        public DocumentRepository()
         {
-            _products = GetAllProducts();
+            _documents = GetAllDocuments();
         }
-        public List<Product> GetAllProducts()
+        public List<Document> GetAllDocuments()
         {
-            var products = new List<Product>();
+            var documents = new List<Document>();
             using (DbConnection connection = new SqlConnection(connectionString))
             using (DbCommand command = connection.CreateCommand())
             {
-                command.CommandText = "SELECT * FROM Ordering_Products";
+                command.CommandText = "SELECT * FROM Ordering_Documents";
                 connection.Open();
                 using (DbDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        products.Add(new Product()
+                        documents.Add(new Document()
                         {
-                            Id = (int)reader["Id"],
-                            Naziv = (string)reader["Naziv"],
-                            JMJ = (string)reader["JMJ"],
-                            Cijena = (decimal)reader["Cijena"],
-                            Kolicina = (int)reader["Kolicina"],
-                            GrupaId = (int)reader["GrupaId"]
+                            TipDokumenta = (int)reader["TipDokumenta"],
+                            Datum = (DateTime)reader["Datum"],
+                            SifraArtikla = (int)reader["SifraArtikla"],
+                            Kolicina = (decimal)reader["Kolicina"]
                         });
                     }
                 }
             }
-            return products;
+            return documents;
         }
     }
 }

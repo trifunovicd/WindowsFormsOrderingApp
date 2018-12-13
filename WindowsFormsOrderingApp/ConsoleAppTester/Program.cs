@@ -12,7 +12,7 @@ namespace ConsoleAppTester
         static void Main(string[] args)
         {
             var productRepo = new ProductRepository();
-            var products = productRepo.GetAll();
+            var products = productRepo.GetAllProducts();
             foreach (var product in products)
             {
                 Console.WriteLine(product.Id);
