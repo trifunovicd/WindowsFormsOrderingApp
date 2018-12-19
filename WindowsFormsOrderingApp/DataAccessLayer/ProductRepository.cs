@@ -35,7 +35,6 @@ namespace DataAccessLayer
                             Naziv = (string)reader["Naziv"],
                             JMJ = (string)reader["JMJ"],
                             Cijena = (decimal)reader["Cijena"],
-                            Kolicina = (int)reader["Kolicina"],
                             GrupaId = (int)reader["GrupaId"]
                         });
                     }

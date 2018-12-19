@@ -12,7 +12,6 @@ namespace DataAccessLayer.Entities
         public string Naziv { get; set; }
         public string JMJ { get; set; }
         public decimal Cijena { get; set; }
-        public int Kolicina { get; set; }
         public int GrupaId { get; set; }
     }
 }
