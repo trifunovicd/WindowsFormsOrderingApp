@@ -25,11 +25,13 @@ namespace ConsoleAppTester
             }
             foreach (var document in documents)
             {
+                Console.WriteLine(document.Id);
                 Console.WriteLine(document.TipDokumenta);
                 Console.WriteLine(document.Datum);
                 Console.WriteLine(document.SifraArtikla);
                 Console.WriteLine(document.Kolicina);
             }
+          
             Console.ReadKey();
         }
     }

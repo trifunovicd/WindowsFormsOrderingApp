@@ -8,6 +8,7 @@ namespace DataAccessLayer.Entities
 {
     public class Document
     {
+        public int Id { get; set; }
         public int TipDokumenta { get; set; }
         public DateTime Datum { get; set; }
         public int SifraArtikla { get; set; }

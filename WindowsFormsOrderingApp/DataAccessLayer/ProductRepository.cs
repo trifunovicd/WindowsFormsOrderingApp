@@ -42,5 +42,20 @@ namespace DataAccessLayer
             }
             return products;
         }
+
+        public void AddProduct(Product product)
+        {
+            string sSqlConnectionString = "Data Source=193.198.57.183; Initial Catalog = DotNet; User ID = vjezbe; Password = vjezbe";
+            using (DbConnection oConnection = new SqlConnection(sSqlConnectionString))
+            using (DbCommand oCommand = oConnection.CreateCommand())
+            {
+                oCommand.CommandText = "INSERT INTO Ordering_Products (Id, Naziv, JMJ, Cijena, GrupaId) VALUES ('" + product.Id + "', '" + product.Naziv + "', '" + product.JMJ + "', '" + product.Cijena + "', '" + product.GrupaId + "') ";
+                oConnection.Open();
+                using (DbDataReader oReader = oCommand.ExecuteReader())
+                {
+
+                }
+            }
+        }
     }
 }

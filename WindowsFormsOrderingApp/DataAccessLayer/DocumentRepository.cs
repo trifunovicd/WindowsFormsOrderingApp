@@ -31,6 +31,7 @@ namespace DataAccessLayer
                     {
                         documents.Add(new Document()
                         {
+                            Id = (int)reader["Id"],
                             TipDokumenta = (int)reader["TipDokumenta"],
                             Datum = (DateTime)reader["Datum"],
                             SifraArtikla = (int)reader["SifraArtikla"],
@@ -40,6 +41,36 @@ namespace DataAccessLayer
                 }
             }
             return documents;
+        }
+
+        public void AddDocument(Document document)
+        {
+            string sSqlConnectionString = "Data Source=193.198.57.183; Initial Catalog = DotNet; User ID = vjezbe; Password = vjezbe";
+            using (DbConnection oConnection = new SqlConnection(sSqlConnectionString))
+            using (DbCommand oCommand = oConnection.CreateCommand())
+            {
+                oCommand.CommandText = "INSERT INTO Ordering_Documents (Id, TipDokumenta, Datum, SifraArtikla, Kolicina) VALUES ('" + document.Id + "', '" + document.TipDokumenta + "', '" + document.Datum + "', '" + document.SifraArtikla + "', '" + document.Kolicina + "') ";
+                oConnection.Open();
+                using (DbDataReader oReader = oCommand.ExecuteReader())
+                {
+
+                }
+            }
+        }
+
+        public void DeleteDocument(Document document)
+        {
+            string sSqlConnectionString = "Data Source=193.198.57.183; Initial Catalog = DotNet; User ID = vjezbe; Password = vjezbe";
+            using (DbConnection oConnection = new SqlConnection(sSqlConnectionString))
+            using (DbCommand oCommand = oConnection.CreateCommand())
+            {
+                oCommand.CommandText = "DELETE FROM Ordering_Documents WHERE  Id =" + document.Id;
+                oConnection.Open();
+                using (DbDataReader oReader = oCommand.ExecuteReader())
+                {
+
+                }
+            }
         }
     }
 }
