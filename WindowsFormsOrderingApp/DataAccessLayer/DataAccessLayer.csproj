@@ -44,14 +44,15 @@
     <Compile Include="Entities\Document.cs" />
     <Compile Include="Entities\Group.cs" />
     <Compile Include="Entities\Product.cs" />
+    <Compile Include="Entities\Stanje.cs" />
     <Compile Include="Enum\TipDokumenta.cs" />
     <Compile Include="GroupRepository.cs" />
     <Compile Include="ProductRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\DocumentVM.cs" />
+    <Compile Include="ViewModels\ProductVM.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

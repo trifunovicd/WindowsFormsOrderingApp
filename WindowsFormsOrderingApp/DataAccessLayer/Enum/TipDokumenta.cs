@@ -9,7 +9,7 @@ namespace DataAccessLayer.Enum
     public enum TipDokumenta
     {
         PS = 1,
-        IZD = 2,
-        PRM = 3
+        PRM = 2,
+        IZD = 3
     }
 }

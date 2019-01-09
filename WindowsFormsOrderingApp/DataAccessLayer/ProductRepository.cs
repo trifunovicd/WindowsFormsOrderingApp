@@ -42,7 +42,19 @@ namespace DataAccessLayer
             }
             return products;
         }
+        public List<string> GetProductNames()
+        {
+            var products = _products.Where(p => !string.IsNullOrEmpty(p.Naziv)).Select(p => p.Naziv).Distinct().OrderBy(p => p).ToList();
+            //products.Insert(0, "");
+            return products;
+        }
 
+        public int GetProductId(string productName)
+        {
+            int productId = _products.Where(p => p.Naziv == productName).Select(p => p.Id).FirstOrDefault();
+            
+            return productId;
+        }
         public void AddProduct(Product product)
         {
             string sSqlConnectionString = "Data Source=193.198.57.183; Initial Catalog = DotNet; User ID = vjezbe; Password = vjezbe";

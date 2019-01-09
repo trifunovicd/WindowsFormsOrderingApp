@@ -46,14 +46,89 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormArtikli.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormArtikli.Designer.cs">
+      <DependentUpon>FormArtikli.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDodajArtikl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDodajArtikl.Designer.cs">
+      <DependentUpon>FormDodajArtikl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDokumenti.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDokumenti.Designer.cs">
+      <DependentUpon>FormDokumenti.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormIzvjesceArtikla.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormIzvjesceArtikla.Designer.cs">
+      <DependentUpon>FormIzvjesceArtikla.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormNovaIzdatnica.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormNovaIzdatnica.Designer.cs">
+      <DependentUpon>FormNovaIzdatnica.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormNovaPrimka.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormNovaPrimka.Designer.cs">
+      <DependentUpon>FormNovaPrimka.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormObrisiDokument.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormObrisiDokument.Designer.cs">
+      <DependentUpon>FormObrisiDokument.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormStanje.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStanje.Designer.cs">
+      <DependentUpon>FormStanje.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormArtikli.resx">
+      <DependentUpon>FormArtikli.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDodajArtikl.resx">
+      <DependentUpon>FormDodajArtikl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDokumenti.resx">
+      <DependentUpon>FormDokumenti.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormIzvjesceArtikla.resx">
+      <DependentUpon>FormIzvjesceArtikla.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormNovaIzdatnica.resx">
+      <DependentUpon>FormNovaIzdatnica.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormNovaPrimka.resx">
+      <DependentUpon>FormNovaPrimka.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormObrisiDokument.resx">
+      <DependentUpon>FormObrisiDokument.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStanje.resx">
+      <DependentUpon>FormStanje.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -75,6 +150,22 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
+      <Project>{70704299-a47e-44f2-813c-63ffcfeed3e0}</Project>
+      <Name>DataAccessLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\view.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\delete.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

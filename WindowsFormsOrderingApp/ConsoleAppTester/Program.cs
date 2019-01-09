@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataAccessLayer;
+using DataAccessLayer.Enum;
 
 namespace ConsoleAppTester
 {
@@ -15,6 +16,7 @@ namespace ConsoleAppTester
             var documents = documentRepo.GetAllDocuments();
             var productRepo = new ProductRepository();
             var products = productRepo.GetAllProducts();
+            /*
             foreach (var product in products)
             {
                 Console.WriteLine(product.Id);
@@ -22,6 +24,8 @@ namespace ConsoleAppTester
                 Console.WriteLine(product.JMJ);
                 Console.WriteLine(product.Cijena);
                 Console.WriteLine(product.GrupaId);
+                Console.WriteLine(documentRepo.DohvatiTrenutnoStanje(product.Id));
+                Console.WriteLine();
             }
             foreach (var document in documents)
             {
@@ -30,9 +34,13 @@ namespace ConsoleAppTester
                 Console.WriteLine(document.Datum);
                 Console.WriteLine(document.SifraArtikla);
                 Console.WriteLine(document.Kolicina);
+                TipDokumenta foo = (TipDokumenta)document.TipDokumenta;
+                Console.WriteLine(foo);
+                Console.WriteLine();
             }
-          
+            */
             Console.ReadKey();
         }
     }
 }
+
