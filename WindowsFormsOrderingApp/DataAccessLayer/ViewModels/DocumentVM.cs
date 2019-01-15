@@ -13,6 +13,6 @@ namespace DataAccessLayer.ViewModels
         public TipDokumenta TipDokumenta { get; set; }
         public DateTime Datum { get; set; }
         public string NazivArtikla { get; set; }
-        public decimal Kolicina { get; set; }
+        public int Kolicina { get; set; }
     }
 }

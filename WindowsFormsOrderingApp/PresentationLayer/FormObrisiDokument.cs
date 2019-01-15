@@ -28,7 +28,8 @@ namespace PresentationLayer
         {
             _documentRepository.DeleteDocument(_document);
             this.Hide();
-            _formDokumenti._documentBindingSource.DataSource = _documentRepository.GetDocuments();
+            var _document_Repository = new DocumentRepository();
+            _formDokumenti._documentBindingSource.DataSource = _document_Repository.GetDocuments();
         }
 
         private void buttonZatvori_Click(object sender, EventArgs e)

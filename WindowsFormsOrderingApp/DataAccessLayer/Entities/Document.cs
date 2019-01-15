@@ -12,6 +12,6 @@ namespace DataAccessLayer.Entities
         public int TipDokumenta { get; set; }
         public DateTime Datum { get; set; }
         public int SifraArtikla { get; set; }
-        public decimal Kolicina { get; set; }
+        public int Kolicina { get; set; }
     }
 }

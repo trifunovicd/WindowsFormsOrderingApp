@@ -1,8 +1,10 @@
 ﻿using DataAccessLayer.Entities;
+using DataAccessLayer.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +15,7 @@ namespace DataAccessLayer
     {
         string connectionString = "Data Source=193.198.57.183; Initial Catalog = DotNet;User ID = vjezbe; Password = vjezbe";
         public List<Product> _products = new List<Product>();
+        public GroupRepository _groupRepository = new GroupRepository();
         public ProductRepository()
         {
             _products = GetAllProducts();
@@ -42,13 +45,36 @@ namespace DataAccessLayer
             }
             return products;
         }
-        public List<string> GetProductNames()
+
+        public List<ProductVM> SearchProduct(string naziv)
         {
-            var products = _products.Where(p => !string.IsNullOrEmpty(p.Naziv)).Select(p => p.Naziv).Distinct().OrderBy(p => p).ToList();
-            //products.Insert(0, "");
+            var products = GetProducts().Where(p => true);
+            if (naziv != "")
+            {
+                products = products.Where(p => p.Naziv.ToUpper().Contains(naziv.ToUpper()) || p.Id.ToString().ToUpper().Contains(naziv.ToUpper()));
+            }
+            return products.ToList();
+        }
+        public List<ProductVM> GetProducts()
+        {
+            var groups = _groupRepository.GetGroups();
+            var products = _products.Select(p => new ProductVM
+            {
+                Id = p.Id,
+                Naziv = p.Naziv,
+                JMJ = p.JMJ,
+                Cijena = p.Cijena,
+                Grupa = groups.Where(g => g.Id == p.GrupaId).Select(g => g.Naziv).FirstOrDefault()
+            }).ToList();
+
             return products;
         }
-
+        public List<string> GetProductNames()
+        {
+            var products = _products.Select(p => p.Naziv).OrderBy(p => p).ToList();
+            products.Insert(0, "-- Odaberite artikl --");
+            return products;
+        }
         public int GetProductId(string productName)
         {
             int productId = _products.Where(p => p.Naziv == productName).Select(p => p.Id).FirstOrDefault();
@@ -61,7 +87,9 @@ namespace DataAccessLayer
             using (DbConnection oConnection = new SqlConnection(sSqlConnectionString))
             using (DbCommand oCommand = oConnection.CreateCommand())
             {
-                oCommand.CommandText = "INSERT INTO Ordering_Products (Id, Naziv, JMJ, Cijena, GrupaId) VALUES ('" + product.Id + "', '" + product.Naziv + "', '" + product.JMJ + "', '" + product.Cijena + "', '" + product.GrupaId + "') ";
+                var query = "INSERT INTO Ordering_Products (Naziv, JMJ, Cijena, GrupaId) VALUES ('" + product.Naziv + "', '" + product.JMJ + "', " + product.Cijena.ToString().Replace(",", ".") + ", " + product.GrupaId + ") ";
+                //Log(query);
+                oCommand.CommandText = query;
                 oConnection.Open();
                 using (DbDataReader oReader = oCommand.ExecuteReader())
                 {
@@ -69,5 +97,11 @@ namespace DataAccessLayer
                 }
             }
         }
+        /*
+        public void Log(string query)
+        {
+            File.WriteAllText("C:\\Users\\danij\\Desktop\\log.txt", query);
+        }
+        */
     }
 }

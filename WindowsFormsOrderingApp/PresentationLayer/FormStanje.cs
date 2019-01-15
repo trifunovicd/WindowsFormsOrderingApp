@@ -25,5 +25,16 @@ namespace PresentationLayer
         {
              dataGridViewStanje.DataSource = _documentBindingSource;
         }
+
+        private void buttonPretrazi_Click(object sender, EventArgs e)
+        {
+            _documentBindingSource.DataSource = _documentRepository.SearchStanje(textBoxArtikl.Text);
+        }
+
+        private void buttonOsvjezi_Click(object sender, EventArgs e)
+        {
+            var _document_Repository = new DocumentRepository();
+            _documentBindingSource.DataSource = _document_Repository.DohvatiStanje();
+        }
     }
 }

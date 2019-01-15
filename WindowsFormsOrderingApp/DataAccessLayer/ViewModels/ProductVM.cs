@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.ViewModels
 {
-    class ProductVM
+    public class ProductVM
     {
         public int Id { get; set; }
         public string Naziv { get; set; }

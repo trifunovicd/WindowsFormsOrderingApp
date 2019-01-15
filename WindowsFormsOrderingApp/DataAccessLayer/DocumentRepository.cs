@@ -39,7 +39,7 @@ namespace DataAccessLayer
                             TipDokumenta = (int)reader["TipDokumenta"],
                             Datum = (DateTime)reader["Datum"],
                             SifraArtikla = (int)reader["SifraArtikla"],
-                            Kolicina = (decimal)reader["Kolicina"]
+                            Kolicina = (int)reader["Kolicina"]
                         });
                     }
                 }
@@ -62,6 +62,22 @@ namespace DataAccessLayer
             return documents;
         }
 
+        public List<DocumentVM> SearchDocument(string datum)
+        {
+            var documents = GetDocuments().Where(d => true);
+            
+            documents = documents.Where(d => d.Datum.ToShortDateString() == datum);
+            
+            return documents.ToList();
+        }
+        public List<DocumentVM> SearchDocumentByDate(string datum, string naziv)
+        {
+            var documents = GetDocuments().Where(d => true);
+
+            documents = documents.Where(d => d.Datum.ToShortDateString() == datum && d.NazivArtikla == naziv);
+
+            return documents.ToList();
+        }
         public List<DocumentVM> GetDocumentsById(int productId)
         {
             var products = _productRepository.GetAllProducts();
@@ -83,7 +99,7 @@ namespace DataAccessLayer
             using (DbConnection oConnection = new SqlConnection(sSqlConnectionString))
             using (DbCommand oCommand = oConnection.CreateCommand())
             {
-                oCommand.CommandText = "INSERT INTO Ordering_Documents (TipDokumenta, Datum, SifraArtikla, Kolicina) VALUES ('" + document.TipDokumenta + "', '" + document.Datum.ToString("yyyy-MM-dd") + "', '" + document.SifraArtikla + "', '" + document.Kolicina + "') ";
+                oCommand.CommandText = "INSERT INTO Ordering_Documents (TipDokumenta, Datum, SifraArtikla, Kolicina) VALUES (" + document.TipDokumenta + ", '" + document.Datum.ToString("yyyy-MM-dd") + "', " + document.SifraArtikla + ", " + document.Kolicina + ") ";
                 oConnection.Open();
                 using (DbDataReader oReader = oCommand.ExecuteReader())
                 {
@@ -109,6 +125,7 @@ namespace DataAccessLayer
 
         public List<Stanje> DohvatiStanje()
         {
+            _stanje.Clear();
             var _products = _productRepository.GetAllProducts();
             for (int i = 0; i < _products.Count(); i++)
             {
@@ -140,11 +157,21 @@ namespace DataAccessLayer
             return _stanje;
         }
 
-        public decimal DohvatiTrenutnoStanje(int sifraArtikla)
+        public List<Stanje> SearchStanje(string naziv)
         {
-            decimal PocetnaKolicinaUlaz=0;
-            decimal UkupnaKolicinaUlaz=0;
-            decimal UkupnaKolicinaIzlaz=0;
+            var stanje = DohvatiStanje().Where(s => true);
+            if (naziv != "")
+            {
+                stanje = stanje.Where(s => s.Naziv.ToUpper().Contains(naziv.ToUpper()) || s.Id.ToString().ToUpper().Contains(naziv.ToUpper()));
+            }
+            return stanje.ToList();
+        }
+
+        public int DohvatiTrenutnoStanje(int sifraArtikla)
+        {
+            int PocetnaKolicinaUlaz =0;
+            int UkupnaKolicinaUlaz =0;
+            int UkupnaKolicinaIzlaz =0;
             var _products = _productRepository.GetAllProducts();
             
             for (int i = 0; i < _products.Count(); i++)
@@ -168,7 +195,7 @@ namespace DataAccessLayer
                 }
             }
 
-            decimal trenutnoStanje = ((PocetnaKolicinaUlaz + UkupnaKolicinaUlaz) - UkupnaKolicinaIzlaz);
+            int trenutnoStanje = ((PocetnaKolicinaUlaz + UkupnaKolicinaUlaz) - UkupnaKolicinaIzlaz);
             return trenutnoStanje;
         }
     }

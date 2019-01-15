@@ -23,6 +23,7 @@ namespace PresentationLayer
         {
             InitializeComponent();
             _documentBindingSource.DataSource = _documentRepository.GetDocuments();
+            dateTimePickerDokumenti.Format = DateTimePickerFormat.Short;
         }
 
         private void FormDokumenti_Load(object sender, EventArgs e)
@@ -46,20 +47,54 @@ namespace PresentationLayer
                 var tipDokumenta = Convert.ToInt32(dataGridViewDokumenti.Rows[e.RowIndex].Cells[1].Value);
                 var datum = Convert.ToDateTime(dataGridViewDokumenti.Rows[e.RowIndex].Cells[2].Value);
                 var sifraArtikla = Convert.ToString(dataGridViewDokumenti.Rows[e.RowIndex].Cells[3].Value);
-                var kolicina = Convert.ToDecimal(dataGridViewDokumenti.Rows[e.RowIndex].Cells[4].Value);
+                var kolicina = Convert.ToInt32(dataGridViewDokumenti.Rows[e.RowIndex].Cells[4].Value);
 
-                var document = new Document
+                if(tipDokumenta==1)
                 {
-                    Id = id,
-                    TipDokumenta = tipDokumenta,
-                    Datum = datum,
-                    SifraArtikla = _productRepository.GetProductId(sifraArtikla),
-                    Kolicina = kolicina
+                    MessageBox.Show("Ne možete obrisati ovu vrstu dokumenta!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    var document = new Document
+                    {
+                        Id = id,
+                        TipDokumenta = tipDokumenta,
+                        Datum = datum,
+                        SifraArtikla = _productRepository.GetProductId(sifraArtikla),
+                        Kolicina = kolicina
 
-                };
-                FormObrisiDokument formObrisiDokument = new FormObrisiDokument(document, this);
-                formObrisiDokument.Show();
+                    };
+                    DialogResult result = MessageBox.Show("Jeste li sigurni da želite obrisati ovaj dokument?", "Info", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (result == DialogResult.Yes)
+                    {
+                        _documentRepository.DeleteDocument(document);
+                        var _document_Repository = new DocumentRepository();
+                        _documentBindingSource.DataSource = _document_Repository.GetDocuments();
+                    }
+                    /*
+                    FormObrisiDokument formObrisiDokument = new FormObrisiDokument(document, this);
+                    formObrisiDokument.Show();*/
+                }
+
             }
+        }
+
+        private void dateTimePickerDokumenti_ValueChanged(object sender, EventArgs e)
+        {
+         //   var _document_Repository = new DocumentRepository();
+         //   _documentBindingSource.DataSource = _document_Repository.SearchDocument(dateTimePickerDokumenti.Text);
+        }
+
+        private void buttonPrikaziSve_Click(object sender, EventArgs e)
+        {
+            var _document_Repository = new DocumentRepository();
+            _documentBindingSource.DataSource = _document_Repository.GetDocuments();
+        }
+
+        private void buttonPretrazi_Click(object sender, EventArgs e)
+        {
+            var _document_Repository = new DocumentRepository();
+            _documentBindingSource.DataSource = _document_Repository.SearchDocument(dateTimePickerDokumenti.Text);
         }
     }
 }

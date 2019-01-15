@@ -57,6 +57,7 @@
             // 
             // comboBoxArtikli
             // 
+            this.comboBoxArtikli.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxArtikli.FormattingEnabled = true;
             this.comboBoxArtikli.Location = new System.Drawing.Point(68, 22);
             this.comboBoxArtikli.Name = "comboBoxArtikli";

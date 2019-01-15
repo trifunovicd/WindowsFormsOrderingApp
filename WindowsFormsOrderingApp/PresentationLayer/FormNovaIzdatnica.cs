@@ -29,21 +29,28 @@ namespace PresentationLayer
         }
         private void buttonSpremi_Click(object sender, EventArgs e)
         {
-            Document _document = new Document();
-            _document.TipDokumenta = 3;
-            _document.Datum = DateTime.Now;
-            _document.SifraArtikla = _productRepository.GetProductId(comboBoxArtikli.Text);
-            _document.Kolicina = Convert.ToDecimal(numericUpDownKolicina.Text);
-            if(Convert.ToDecimal(numericUpDownKolicina.Text)>_documentRepository.DohvatiTrenutnoStanje(_productRepository.GetProductId(comboBoxArtikli.Text)))
+            if (comboBoxArtikli.SelectedIndex != 0)
             {
-                MessageBox.Show("Nije moguće izvesti traženu akciju!", "Upozorenje!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Document _document = new Document();
+                _document.TipDokumenta = 3;
+                _document.Datum = DateTime.Now;
+                _document.SifraArtikla = _productRepository.GetProductId(comboBoxArtikli.Text);
+                _document.Kolicina = Convert.ToInt32(numericUpDownKolicina.Text);
+                if (Convert.ToInt32(numericUpDownKolicina.Text) > _documentRepository.DohvatiTrenutnoStanje(_productRepository.GetProductId(comboBoxArtikli.Text)))
+                {
+                    MessageBox.Show("Nije moguće izvesti traženu akciju!", "Upozorenje!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    _documentRepository.AddDocument(_document);
+                    this.Hide();
+                    MessageBox.Show("Nova izdatnica je kreirana!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             else
             {
-                _documentRepository.AddDocument(_document);
-                this.Hide();
+                MessageBox.Show("Popunite sva polja!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            
         }
 
         private void buttonOdustani_Click(object sender, EventArgs e)

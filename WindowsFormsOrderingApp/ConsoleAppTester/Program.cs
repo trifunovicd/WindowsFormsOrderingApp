@@ -16,6 +16,8 @@ namespace ConsoleAppTester
             var documents = documentRepo.GetAllDocuments();
             var productRepo = new ProductRepository();
             var products = productRepo.GetAllProducts();
+            var groupRepo = new GroupRepository();
+            var groups = groupRepo.GetGroups();
             /*
             foreach (var product in products)
             {
@@ -26,19 +28,24 @@ namespace ConsoleAppTester
                 Console.WriteLine(product.GrupaId);
                 Console.WriteLine(documentRepo.DohvatiTrenutnoStanje(product.Id));
                 Console.WriteLine();
-            }
+            }*/
             foreach (var document in documents)
             {
                 Console.WriteLine(document.Id);
                 Console.WriteLine(document.TipDokumenta);
-                Console.WriteLine(document.Datum);
+                Console.WriteLine(document.Datum.ToShortDateString());
                 Console.WriteLine(document.SifraArtikla);
                 Console.WriteLine(document.Kolicina);
                 TipDokumenta foo = (TipDokumenta)document.TipDokumenta;
                 Console.WriteLine(foo);
                 Console.WriteLine();
             }
-            */
+            
+            /*foreach (var group in groups)
+            {
+                Console.WriteLine(group.Id);
+                Console.WriteLine(group.Naziv);
+            }*/
             Console.ReadKey();
         }
     }

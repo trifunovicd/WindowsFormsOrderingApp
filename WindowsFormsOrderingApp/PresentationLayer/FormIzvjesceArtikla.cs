@@ -15,18 +15,38 @@ namespace PresentationLayer
 {
     public partial class FormIzvjesceArtikla : Form
     {
+        ProductVM _product = new ProductVM();
         private DocumentRepository _documentRepository = new DocumentRepository();
         private BindingSource _documentBindingSource = new BindingSource();
-        public FormIzvjesceArtikla(int id, FormArtikli form)
+        public FormIzvjesceArtikla(ProductVM product, FormArtikli form)
         {
             InitializeComponent();
-            var productId = id;
-            _documentBindingSource.DataSource = _documentRepository.GetDocumentsById(productId);
+            _product = product;
+            _documentBindingSource.DataSource = _documentRepository.GetDocumentsById(_product.Id);
+            dateTimePickerDokumenti.Format = DateTimePickerFormat.Short;
         }
 
         private void FormIzvjesceArtikla_Load(object sender, EventArgs e)
         {
             dataGridViewIzvjesceArtikla.DataSource = _documentBindingSource;
+        }
+
+        private void dateTimePickerDokumenti_ValueChanged(object sender, EventArgs e)
+        {
+          //  var _document_Repository = new DocumentRepository();
+          //  _documentBindingSource.DataSource = _document_Repository.SearchDocumentByDate(dateTimePickerDokumenti.Text, _product.Naziv);
+        }
+
+        private void buttonPrikaziSve_Click(object sender, EventArgs e)
+        {
+            var _document_Repository = new DocumentRepository();
+            _documentBindingSource.DataSource = _document_Repository.GetDocumentsById(_product.Id);
+        }
+
+        private void buttonPretrazi_Click(object sender, EventArgs e)
+        {
+            var _document_Repository = new DocumentRepository();
+            _documentBindingSource.DataSource = _document_Repository.SearchDocumentByDate(dateTimePickerDokumenti.Text, _product.Naziv);
         }
     }
 }

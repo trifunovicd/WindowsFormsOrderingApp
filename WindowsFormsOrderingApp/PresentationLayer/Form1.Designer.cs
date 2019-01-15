@@ -96,7 +96,6 @@
             this.Controls.Add(this.buttonDokumenti);
             this.Controls.Add(this.buttonArtikli);
             this.Name = "Form1";
-            this.Text = "Form1";
             this.ResumeLayout(false);
 
         }

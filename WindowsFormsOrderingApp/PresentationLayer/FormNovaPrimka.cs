@@ -30,13 +30,21 @@ namespace PresentationLayer
 
         private void buttonSpremi_Click(object sender, EventArgs e)
         {
-            Document _document = new Document();
-            _document.TipDokumenta = 2;
-            _document.Datum = DateTime.Now;
-            _document.SifraArtikla = _productRepository.GetProductId(comboBoxArtikli.Text);
-            _document.Kolicina = Convert.ToDecimal(numericUpDownKolicina.Text);
-            _documentRepository.AddDocument(_document);
-            this.Hide();
+            if(comboBoxArtikli.SelectedIndex!=0)
+            {
+                Document _document = new Document();
+                _document.TipDokumenta = 2;
+                _document.Datum = DateTime.Now;
+                _document.SifraArtikla = _productRepository.GetProductId(comboBoxArtikli.Text);
+                _document.Kolicina = Convert.ToInt32(numericUpDownKolicina.Text);
+                _documentRepository.AddDocument(_document);
+                this.Hide();
+                MessageBox.Show("Nova primka je kreirana!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Popunite sva polja!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
         private void buttonOdustani_Click(object sender, EventArgs e)

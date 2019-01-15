@@ -55,6 +55,7 @@
             // 
             // buttonZatvori
             // 
+            this.buttonZatvori.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonZatvori.Location = new System.Drawing.Point(137, 79);
             this.buttonZatvori.Name = "buttonZatvori";
             this.buttonZatvori.Size = new System.Drawing.Size(75, 23);
@@ -65,8 +66,10 @@
             // 
             // FormObrisiDokument
             // 
+            this.AcceptButton = this.buttonObrisi;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.buttonZatvori;
             this.ClientSize = new System.Drawing.Size(238, 112);
             this.Controls.Add(this.buttonZatvori);
             this.Controls.Add(this.buttonObrisi);

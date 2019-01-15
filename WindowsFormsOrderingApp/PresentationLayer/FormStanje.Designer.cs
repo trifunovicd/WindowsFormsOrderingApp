@@ -41,6 +41,9 @@
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.textBoxArtikl = new System.Windows.Forms.TextBox();
+            this.buttonPretrazi = new System.Windows.Forms.Button();
+            this.buttonOsvjezi = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewStanje)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,7 +64,7 @@
             this.Column10,
             this.Column11,
             this.Column12});
-            this.dataGridViewStanje.Location = new System.Drawing.Point(1, 1);
+            this.dataGridViewStanje.Location = new System.Drawing.Point(1, 37);
             this.dataGridViewStanje.Name = "dataGridViewStanje";
             this.dataGridViewStanje.Size = new System.Drawing.Size(913, 288);
             this.dataGridViewStanje.TabIndex = 0;
@@ -69,7 +72,7 @@
             // Column1
             // 
             this.Column1.DataPropertyName = "Id";
-            this.Column1.HeaderText = "Id";
+            this.Column1.HeaderText = "Šifra artikla";
             this.Column1.Name = "Column1";
             // 
             // Column2
@@ -138,17 +141,49 @@
             this.Column12.HeaderText = "Trenutni iznos";
             this.Column12.Name = "Column12";
             // 
+            // textBoxArtikl
+            // 
+            this.textBoxArtikl.Location = new System.Drawing.Point(654, 9);
+            this.textBoxArtikl.Name = "textBoxArtikl";
+            this.textBoxArtikl.Size = new System.Drawing.Size(169, 20);
+            this.textBoxArtikl.TabIndex = 3;
+            // 
+            // buttonPretrazi
+            // 
+            this.buttonPretrazi.Location = new System.Drawing.Point(829, 7);
+            this.buttonPretrazi.Name = "buttonPretrazi";
+            this.buttonPretrazi.Size = new System.Drawing.Size(75, 23);
+            this.buttonPretrazi.TabIndex = 4;
+            this.buttonPretrazi.Text = "Pretraži";
+            this.buttonPretrazi.UseVisualStyleBackColor = true;
+            this.buttonPretrazi.Click += new System.EventHandler(this.buttonPretrazi_Click);
+            // 
+            // buttonOsvjezi
+            // 
+            this.buttonOsvjezi.Location = new System.Drawing.Point(13, 9);
+            this.buttonOsvjezi.Name = "buttonOsvjezi";
+            this.buttonOsvjezi.Size = new System.Drawing.Size(75, 23);
+            this.buttonOsvjezi.TabIndex = 5;
+            this.buttonOsvjezi.Text = "Osvježi";
+            this.buttonOsvjezi.UseVisualStyleBackColor = true;
+            this.buttonOsvjezi.Click += new System.EventHandler(this.buttonOsvjezi_Click);
+            // 
             // FormStanje
             // 
+            this.AcceptButton = this.buttonPretrazi;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(916, 289);
+            this.ClientSize = new System.Drawing.Size(916, 326);
+            this.Controls.Add(this.buttonOsvjezi);
+            this.Controls.Add(this.buttonPretrazi);
+            this.Controls.Add(this.textBoxArtikl);
             this.Controls.Add(this.dataGridViewStanje);
             this.Name = "FormStanje";
             this.Text = "Stanje";
             this.Load += new System.EventHandler(this.FormStanje_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewStanje)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -167,5 +202,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
+        private System.Windows.Forms.TextBox textBoxArtikl;
+        private System.Windows.Forms.Button buttonPretrazi;
+        private System.Windows.Forms.Button buttonOsvjezi;
     }
 }
