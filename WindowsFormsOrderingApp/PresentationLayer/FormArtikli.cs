@@ -77,18 +77,20 @@ namespace PresentationLayer
                 _product.JMJ = textBoxJMJ.Text;
                 _product.Cijena = Convert.ToDecimal(numericUpDownCijena.Text);
                 _product.GrupaId = _groupRepository.GetGroupId(comboBoxGrupa.Text);
-                _productRepository.AddProduct(_product);
+                var sifraArtikla = _productRepository.AddProduct(_product);
+  
+                //var _product_Repository = new ProductRepository();
 
-                var _product_Repository = new ProductRepository();
+                 Document _document = new Document();
+                 _document.TipDokumenta = 1;
+                 _document.Datum = DateTime.Now;
+                 _document.SifraArtikla = sifraArtikla;
+                 _document.Kolicina = Convert.ToInt32(numericUpDownKolicina.Text);
+                 _documentRepository.AddDocument(_document);
 
-                Document _document = new Document();
-                _document.TipDokumenta = 1;
-                _document.Datum = DateTime.Now;
-                _document.SifraArtikla = _product_Repository.GetProductId(textBoxNaziv.Text);
-                _document.Kolicina = Convert.ToInt32(numericUpDownKolicina.Text);
-                _documentRepository.AddDocument(_document);
+                 _productBindingSource.DataSource = _productRepository.GetProducts();
 
-                _productBindingSource.DataSource = _product_Repository.GetProducts();
+
                 MessageBox.Show("Spremili ste novi proizvod!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else

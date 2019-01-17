@@ -39,14 +39,14 @@ namespace PresentationLayer
 
         private void buttonPrikaziSve_Click(object sender, EventArgs e)
         {
-            var _document_Repository = new DocumentRepository();
-            _documentBindingSource.DataSource = _document_Repository.GetDocumentsById(_product.Id);
+            //var _document_Repository = new DocumentRepository();
+            _documentBindingSource.DataSource = _documentRepository.GetDocumentsById(_product.Id);
         }
 
         private void buttonPretrazi_Click(object sender, EventArgs e)
         {
-            var _document_Repository = new DocumentRepository();
-            _documentBindingSource.DataSource = _document_Repository.SearchDocumentByDate(dateTimePickerDokumenti.Text, _product.Naziv);
+            //var _document_Repository = new DocumentRepository();
+            _documentBindingSource.DataSource = _documentRepository.SearchDocumentByDate(dateTimePickerDokumenti.Text, _product.Naziv);
         }
     }
 }

@@ -58,7 +58,7 @@ namespace DataAccessLayer
         public List<ProductVM> GetProducts()
         {
             var groups = _groupRepository.GetGroups();
-            var products = _products.Select(p => new ProductVM
+            var products = GetAllProducts().Select(p => new ProductVM
             {
                 Id = p.Id,
                 Naziv = p.Naziv,
@@ -81,27 +81,30 @@ namespace DataAccessLayer
             
             return productId;
         }
-        public void AddProduct(Product product)
+        public int AddProduct(Product product)
         {
+            int sifraArtikla = 0;
             string sSqlConnectionString = "Data Source=193.198.57.183; Initial Catalog = DotNet; User ID = vjezbe; Password = vjezbe";
             using (DbConnection oConnection = new SqlConnection(sSqlConnectionString))
             using (DbCommand oCommand = oConnection.CreateCommand())
             {
-                var query = "INSERT INTO Ordering_Products (Naziv, JMJ, Cijena, GrupaId) VALUES ('" + product.Naziv + "', '" + product.JMJ + "', " + product.Cijena.ToString().Replace(",", ".") + ", " + product.GrupaId + ") ";
+                var query = "INSERT INTO Ordering_Products (Naziv, JMJ, Cijena, GrupaId) OUTPUT INSERTED.Id  VALUES ('" + product.Naziv + "', '" + product.JMJ + "', " + product.Cijena.ToString().Replace(",", ".") + ", " + product.GrupaId + ") ";
                 //Log(query);
                 oCommand.CommandText = query;
                 oConnection.Open();
-                using (DbDataReader oReader = oCommand.ExecuteReader())
+                sifraArtikla = (Int32)oCommand.ExecuteScalar();
+                /*using (DbDataReader oReader = oCommand.ExecuteReader())
                 {
-
-                }
+                    sifraArtikla = Convert.ToInt32(oReader["Id"]);
+                }*/
             }
+            return sifraArtikla;
         }
         /*
         public void Log(string query)
         {
-            File.WriteAllText("C:\\Users\\danij\\Desktop\\log.txt", query);
-        }
-        */
+            File.WriteAllText("D:\\log.txt", query);
+        }*/
+        
     }
 }

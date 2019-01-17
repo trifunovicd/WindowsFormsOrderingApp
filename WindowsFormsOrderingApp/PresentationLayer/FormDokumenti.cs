@@ -68,8 +68,8 @@ namespace PresentationLayer
                     if (result == DialogResult.Yes)
                     {
                         _documentRepository.DeleteDocument(document);
-                        var _document_Repository = new DocumentRepository();
-                        _documentBindingSource.DataSource = _document_Repository.GetDocuments();
+                        //var _document_Repository = new DocumentRepository();
+                        _documentBindingSource.DataSource = _documentRepository.GetDocuments();
                     }
                     /*
                     FormObrisiDokument formObrisiDokument = new FormObrisiDokument(document, this);
@@ -87,14 +87,14 @@ namespace PresentationLayer
 
         private void buttonPrikaziSve_Click(object sender, EventArgs e)
         {
-            var _document_Repository = new DocumentRepository();
-            _documentBindingSource.DataSource = _document_Repository.GetDocuments();
+            //var _document_Repository = new DocumentRepository();
+            _documentBindingSource.DataSource = _documentRepository.GetDocuments();
         }
 
         private void buttonPretrazi_Click(object sender, EventArgs e)
         {
-            var _document_Repository = new DocumentRepository();
-            _documentBindingSource.DataSource = _document_Repository.SearchDocument(dateTimePickerDokumenti.Text);
+            //var _document_Repository = new DocumentRepository();
+            _documentBindingSource.DataSource = _documentRepository.SearchDocument(dateTimePickerDokumenti.Text);
         }
     }
 }
