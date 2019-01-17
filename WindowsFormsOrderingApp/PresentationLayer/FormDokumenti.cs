@@ -17,8 +17,8 @@ namespace PresentationLayer
     public partial class FormDokumenti : Form
     {
         private ProductRepository _productRepository = new ProductRepository();
-        public DocumentRepository _documentRepository = new DocumentRepository();
-        public BindingSource _documentBindingSource = new BindingSource();
+        private DocumentRepository _documentRepository = new DocumentRepository();
+        private BindingSource _documentBindingSource = new BindingSource();
         public FormDokumenti()
         {
             InitializeComponent();
