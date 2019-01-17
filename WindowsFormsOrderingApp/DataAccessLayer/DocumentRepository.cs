@@ -14,12 +14,10 @@ namespace DataAccessLayer
     public class DocumentRepository
     {
         string connectionString = "Data Source=193.198.57.183; Initial Catalog = DotNet;User ID = vjezbe; Password = vjezbe";
-        public List<Document> _documents = new List<Document>();
-        public List<Stanje> _stanje = new List<Stanje>();/////
         public ProductRepository _productRepository = new ProductRepository();
         public DocumentRepository()
         {
-            _documents = GetAllDocuments();
+            
         }
         public List<Document> GetAllDocuments()
         {
@@ -81,7 +79,7 @@ namespace DataAccessLayer
         public List<DocumentVM> GetDocumentsById(int productId)
         {
             var products = _productRepository.GetAllProducts();
-            var documents = _documents.Where(d => d.SifraArtikla == productId).Select(d => new DocumentVM
+            var documents = GetAllDocuments().Where(d => d.SifraArtikla == productId).Select(d => new DocumentVM
             {
                 Id = d.Id,
                 TipDokumenta = (TipDokumenta)d.TipDokumenta,
@@ -125,16 +123,17 @@ namespace DataAccessLayer
 
         public List<Stanje> DohvatiStanje()
         {
-            _stanje.Clear();
+            var _stanje = new List<Stanje>();
             var _products = _productRepository.GetAllProducts();
+            var _documents = GetAllDocuments();
             for (int i = 0; i < _products.Count(); i++)
             {
-                var PocetnaKolicinaUlaz = GetAllDocuments().Where(item => item.TipDokumenta == 1 && item.SifraArtikla == _products[i].Id).Sum(item => item.Kolicina);
-                var PocetniIznosUlaz = GetAllDocuments().Where(item => item.TipDokumenta == 1 && item.SifraArtikla == _products[i].Id).Sum(item => item.Kolicina * _products[i].Cijena);
-                var UkupnaKolicinaUlaz = GetAllDocuments().Where(item => item.TipDokumenta == 2 && item.SifraArtikla == _products[i].Id).Sum(item => item.Kolicina);
-                var UkupniIznosUlaz = GetAllDocuments().Where(item => item.TipDokumenta == 2 && item.SifraArtikla == _products[i].Id).Sum(item => item.Kolicina * _products[i].Cijena);
-                var UkupnaKolicinaIzlaz = GetAllDocuments().Where(item => item.TipDokumenta == 3 && item.SifraArtikla == _products[i].Id).Sum(item => item.Kolicina);
-                var UkupniIznosIzlaz = GetAllDocuments().Where(item => item.TipDokumenta == 3 && item.SifraArtikla == _products[i].Id).Sum(item => item.Kolicina * _products[i].Cijena);
+                var PocetnaKolicinaUlaz = _documents.Where(item => item.TipDokumenta == 1 && item.SifraArtikla == _products[i].Id).Sum(item => item.Kolicina);
+                var PocetniIznosUlaz = _documents.Where(item => item.TipDokumenta == 1 && item.SifraArtikla == _products[i].Id).Sum(item => item.Kolicina * _products[i].Cijena);
+                var UkupnaKolicinaUlaz = _documents.Where(item => item.TipDokumenta == 2 && item.SifraArtikla == _products[i].Id).Sum(item => item.Kolicina);
+                var UkupniIznosUlaz = _documents.Where(item => item.TipDokumenta == 2 && item.SifraArtikla == _products[i].Id).Sum(item => item.Kolicina * _products[i].Cijena);
+                var UkupnaKolicinaIzlaz = _documents.Where(item => item.TipDokumenta == 3 && item.SifraArtikla == _products[i].Id).Sum(item => item.Kolicina);
+                var UkupniIznosIzlaz = _documents.Where(item => item.TipDokumenta == 3 && item.SifraArtikla == _products[i].Id).Sum(item => item.Kolicina * _products[i].Cijena);
                 
                 var stanje = new Stanje
                 {
@@ -173,7 +172,7 @@ namespace DataAccessLayer
             int UkupnaKolicinaUlaz =0;
             int UkupnaKolicinaIzlaz =0;
             var _products = _productRepository.GetAllProducts();
-            
+            var _documents = GetAllDocuments();
             for (int i = 0; i < _products.Count(); i++)
             {
                 for (int j = 0; j < _documents.Count(); j++)

@@ -28,7 +28,7 @@ namespace ConsoleAppTester
                 Console.WriteLine(product.GrupaId);
                 Console.WriteLine(documentRepo.DohvatiTrenutnoStanje(product.Id));
                 Console.WriteLine();
-            }*/
+            }
             foreach (var document in documents)
             {
                 Console.WriteLine(document.Id);
@@ -40,7 +40,7 @@ namespace ConsoleAppTester
                 Console.WriteLine(foo);
                 Console.WriteLine();
             }
-            
+            */
             /*foreach (var group in groups)
             {
                 Console.WriteLine(group.Id);

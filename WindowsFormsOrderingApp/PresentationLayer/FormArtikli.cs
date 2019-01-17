@@ -47,7 +47,6 @@ namespace PresentationLayer
         {
             if (dataGridViewArtikli.CurrentCell.ColumnIndex.Equals(5) && e.RowIndex != -1)
             {
-                //var id = Convert.ToInt32(dataGridViewArtikli.Rows[e.RowIndex].Cells[0].Value);
                 var id = Convert.ToInt32(dataGridViewArtikli.Rows[e.RowIndex].Cells[0].Value);
                 var naziv = Convert.ToString(dataGridViewArtikli.Rows[e.RowIndex].Cells[1].Value);
                 var jmj = Convert.ToString(dataGridViewArtikli.Rows[e.RowIndex].Cells[2].Value);
@@ -78,8 +77,6 @@ namespace PresentationLayer
                 _product.Cijena = Convert.ToDecimal(numericUpDownCijena.Text);
                 _product.GrupaId = _groupRepository.GetGroupId(comboBoxGrupa.Text);
                 var sifraArtikla = _productRepository.AddProduct(_product);
-  
-                //var _product_Repository = new ProductRepository();
 
                  Document _document = new Document();
                  _document.TipDokumenta = 1;

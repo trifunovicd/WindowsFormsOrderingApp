@@ -14,11 +14,10 @@ namespace DataAccessLayer
     public class ProductRepository
     {
         string connectionString = "Data Source=193.198.57.183; Initial Catalog = DotNet;User ID = vjezbe; Password = vjezbe";
-        public List<Product> _products = new List<Product>();
         public GroupRepository _groupRepository = new GroupRepository();
         public ProductRepository()
         {
-            _products = GetAllProducts();
+            
         }
         public List<Product> GetAllProducts()
         {
@@ -71,13 +70,13 @@ namespace DataAccessLayer
         }
         public List<string> GetProductNames()
         {
-            var products = _products.Select(p => p.Naziv).OrderBy(p => p).ToList();
+            var products = GetAllProducts().Select(p => p.Naziv).OrderBy(p => p).ToList();
             products.Insert(0, "-- Odaberite artikl --");
             return products;
         }
         public int GetProductId(string productName)
         {
-            int productId = _products.Where(p => p.Naziv == productName).Select(p => p.Id).FirstOrDefault();
+            int productId = GetAllProducts().Where(p => p.Naziv == productName).Select(p => p.Id).FirstOrDefault();
             
             return productId;
         }
@@ -93,10 +92,6 @@ namespace DataAccessLayer
                 oCommand.CommandText = query;
                 oConnection.Open();
                 sifraArtikla = (Int32)oCommand.ExecuteScalar();
-                /*using (DbDataReader oReader = oCommand.ExecuteReader())
-                {
-                    sifraArtikla = Convert.ToInt32(oReader["Id"]);
-                }*/
             }
             return sifraArtikla;
         }

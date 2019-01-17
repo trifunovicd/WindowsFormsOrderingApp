@@ -33,7 +33,6 @@ namespace PresentationLayer
 
         private void buttonOsvjezi_Click(object sender, EventArgs e)
         {
-            //var _document_Repository = new DocumentRepository();
             _documentBindingSource.DataSource = _documentRepository.DohvatiStanje();
         }
     }

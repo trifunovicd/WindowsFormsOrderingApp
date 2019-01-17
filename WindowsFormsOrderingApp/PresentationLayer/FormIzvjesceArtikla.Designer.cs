@@ -91,7 +91,6 @@
             this.dateTimePickerDokumenti.Name = "dateTimePickerDokumenti";
             this.dateTimePickerDokumenti.Size = new System.Drawing.Size(200, 20);
             this.dateTimePickerDokumenti.TabIndex = 2;
-            this.dateTimePickerDokumenti.ValueChanged += new System.EventHandler(this.dateTimePickerDokumenti_ValueChanged);
             // 
             // buttonPrikaziSve
             // 

@@ -58,11 +58,11 @@
     <Compile Include="FormDokumenti.Designer.cs">
       <DependentUpon>FormDokumenti.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="FormIzbornik.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="FormIzbornik.Designer.cs">
+      <DependentUpon>FormIzbornik.cs</DependentUpon>
     </Compile>
     <Compile Include="FormIzvjesceArtikla.cs">
       <SubType>Form</SubType>
@@ -82,12 +82,6 @@
     <Compile Include="FormNovaPrimka.Designer.cs">
       <DependentUpon>FormNovaPrimka.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormObrisiDokument.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormObrisiDokument.Designer.cs">
-      <DependentUpon>FormObrisiDokument.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormStanje.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,8 +90,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="FormIzbornik.resx">
+      <DependentUpon>FormIzbornik.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormArtikli.resx">
       <DependentUpon>FormArtikli.cs</DependentUpon>
@@ -113,9 +107,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormNovaPrimka.resx">
       <DependentUpon>FormNovaPrimka.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormObrisiDokument.resx">
-      <DependentUpon>FormObrisiDokument.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormStanje.resx">
       <DependentUpon>FormStanje.cs</DependentUpon>

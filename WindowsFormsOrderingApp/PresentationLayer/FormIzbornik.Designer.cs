@@ -1,6 +1,6 @@
 ﻿namespace PresentationLayer
 {
-    partial class Form1
+    partial class FormIzbornik
     {
         /// <summary>
         /// Required designer variable.
