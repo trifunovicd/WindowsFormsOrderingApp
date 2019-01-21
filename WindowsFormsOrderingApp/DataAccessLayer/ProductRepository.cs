@@ -15,10 +15,6 @@ namespace DataAccessLayer
     {
         string connectionString = "Data Source=193.198.57.183; Initial Catalog = DotNet;User ID = vjezbe; Password = vjezbe";
         public GroupRepository _groupRepository = new GroupRepository();
-        public ProductRepository()
-        {
-            
-        }
         public List<Product> GetAllProducts()
         {
             var products = new List<Product>();
